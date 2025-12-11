@@ -1,4 +1,4 @@
-# CuanBot v3 🤖💰
+# CuanBot 🤖💰
 
 **Akunting Chatbot untuk UMKM Indonesia**
 <img width="1304" height="893" alt="Image" src="https://github.com/user-attachments/assets/ccb60a7d-707f-4b5a-9c3e-99c1886a6203" />
