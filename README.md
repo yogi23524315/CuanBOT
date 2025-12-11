@@ -1,10 +1,160 @@
-# CuanBOT
-## Getting started
+# CuanBot v3 🤖💰
 
-<<<<<<< HEAD
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
-=======
+**Akunting Chatbot untuk UMKM Indonesia**
+
+CuanBot adalah aplikasi chatbot berbasis Telegram yang membantu UMKM mengelola keuangan mereka dengan mudah menggunakan Natural Language Processing (NLP) dan Machine Learning.
+
+## 🌟 Fitur Utama
+
+### 1. **Telegram Bot Interface**
+- Pencatatan transaksi via chat natural language
+- Support untuk:
+  - 💰 Pemasukan (Income)
+  - 💸 Pengeluaran (Expense)
+  - 📝 Piutang (Receivable)
+  - 📝 Hutang (Payable)
+- Ringkasan keuangan otomatis
+- Pertanyaan seputar akunting dengan AI
+
+### 2. **Dashboard Web (Next.js)**
+- 📊 Real-time monitoring transaksi
+- 📈 Visualisasi data dengan charts:
+  - Line chart untuk trend transaksi harian
+  - Pie chart untuk breakdown kategori
+  - Bar chart untuk perbandingan income vs expense
+- 🎯 ML Model Predictions:
+  - **Forecasting**: Prediksi pendapatan 30 hari ke depan
+  - **Anomaly Detection**: Deteksi transaksi mencurigakan
+- 🤖 Bot activity logs & monitoring
+- 💎 Beautiful & responsive UI dengan Tailwind CSS
+
+### 3. **AI & Machine Learning**
+- **LLM Integration (Gemini 2.5 Flash)**:
+  - Natural language understanding untuk parsing transaksi
+  - Chatbot untuk menjawab pertanyaan akunting
+  - Generate summary & insights
+  
+- **ML Models**:
+  - **Time Series Forecasting**: Linear Regression untuk prediksi revenue
+  - **Anomaly Detection**: Isolation Forest untuk deteksi fraud/error
+
+### 4. **Backend API (FastAPI)**
+- RESTful API untuk dashboard
+- Webhook handler untuk Telegram
+- PostgreSQL untuk data persistence
+- Comprehensive logging system
+
+## 🏗️ Arsitektur
+
+```
+┌─────────────────┐
+│  Telegram Bot   │
+│   (End User)    │
+└────────┬────────┘
+         │
+         ↓ Webhook (via ngrok)
+┌─────────────────────────────────────────┐
+│          Docker Environment              │
+│                                          │
+│  ┌──────────────┐    ┌──────────────┐  │
+│  │   Backend    │    │  Dashboard   │  │
+│  │  (FastAPI)   │←───│  (Next.js)   │  │
+│  └──────┬───────┘    └──────────────┘  │
+│         │                                │
+│         ↓                                │
+│  ┌──────────────┐                       │
+│  │  PostgreSQL  │                       │
+│  └──────────────┘                       │
+│                                          │
+│  ┌──────────────┐                       │
+│  │    Ngrok     │                       │
+│  └──────────────┘                       │
+└─────────────────────────────────────────┘
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Docker & Docker Compose
+- Telegram Bot Token (dari @BotFather)
+- Gemini API Key (dari Google AI Studio)
+- Ngrok Authtoken (dari ngrok.com)
+
+### Setup Steps
+
+1. **Clone & Setup Environment**
+
+```bash
+# Clone repository
+git clone <repository-url>
+cd CuanBOTv3
+
+# Copy environment template
+cp .env.example .env
+
+# Edit .env dengan credentials Anda
+nano .env
+```
+
+2. **Configure Environment Variables**
+
+Edit file `.env`:
+
+```env
+# Database
+POSTGRES_USER=cuanbot
+POSTGRES_PASSWORD=your_secure_password_here
+POSTGRES_DB=cuanbot_db
+DATABASE_URL=postgresql://cuanbot:your_secure_password_here@postgres:5432/cuanbot_db
+
+# Telegram Bot (dapatkan dari @BotFather)
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+
+# Gemini API (dapatkan dari Google AI Studio)
+GEMINI_API_KEY=your_gemini_api_key
+
+# Ngrok (dapatkan dari ngrok.com)
+NGROK_AUTHTOKEN=your_ngrok_authtoken
+
+# Backend
+SECRET_KEY=generate_random_secret_key_here
+
+# Dashboard
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+3. **Start Application**
+
+```bash
+# Build dan start semua services
+docker-compose up -d
+
+# Check logs
+docker-compose logs -f
+```
+
+4. **Setup Webhook**
+
+```bash
+# Akses ngrok dashboard untuk mendapatkan public URL
+open http://localhost:4040
+
+# Copy ngrok URL (contoh: https://abc123.ngrok.io)
+# Update .env dengan webhook URL:
+TELEGRAM_WEBHOOK_URL=https://abc123.ngrok.io/webhook/telegram
+
+# Restart backend service
+docker-compose restart backend
+```
+
+5. **Access Applications**
+
+- 🤖 **Telegram Bot**: Cari bot Anda di Telegram dan start chat
+- 📊 **Dashboard**: http://localhost:3000
+- 🔧 **Backend API**: http://localhost:8000
+- 📡 **Ngrok Dashboard**: http://localhost:4040
+
 ## 📱 Cara Menggunakan Bot
 
 ### Mencatat Transaksi
@@ -242,4 +392,3 @@ For issues and questions, please open an issue on GitHub.
 
 **Made with ❤️ for Indonesian UMKM**
 # CuanBOT
->>>>>>> 3753bb1 (first commit)

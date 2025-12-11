@@ -61,16 +61,33 @@ if z_score > 2.5:
 Pembelian ayam Rp 1.200.000 (biasanya 300–500 ribu)
 ```
 
-#### C. Odd Hours Detection
+#### C. Smart Odd Hours Detection
 ```python
-# Transactions between midnight and 5 AM
-if hour >= 0 and hour <= 5:
+# Analyze user's historical hour patterns first
+user_hour_pattern = analyze_user_hour_patterns(df)
+
+# Only flag if truly unusual for this user
+if is_unusual_hour(hour, user_hour_pattern):
+    # Consider business type for context
+    if business_type == "restaurant" and 22 <= hour <= 2:
+        severity = "low"  # Restaurants can operate late
+    elif business_type == "online" and 0 <= hour <= 6:
+        severity = "low"  # Online businesses are 24/7
+    else:
+        severity = "medium"
     → ODD HOURS DETECTED
 ```
 
-**Example:**
+**Examples:**
 ```
-Transaksi pada jam tidak biasa (02:00)
+# For established business with consistent 1 AM transactions
+✅ NOT flagged: User has 8% of transactions at 1 AM
+
+# For new unusual hour
+❌ Flagged: "Transaksi pada jam tidak biasa (04:00) - biasanya jam 08:00-18:00"
+
+# For restaurant business
+⚠️ Low severity: "Transaksi agak terlambat (01:00) - biasanya jam 08:00-22:00"
 ```
 
 #### D. Salary Spike Detection
