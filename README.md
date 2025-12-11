@@ -1,8 +1,8 @@
 # CuanBot v3 🤖💰
 
 **Akunting Chatbot untuk UMKM Indonesia**
-
-CuanBot adalah aplikasi chatbot berbasis Telegram yang membantu UMKM mengelola keuangan mereka dengan mudah menggunakan Natural Language Processing (NLP) dan Machine Learning.
+<img width="1304" height="893" alt="Image" src="https://github.com/user-attachments/assets/ccb60a7d-707f-4b5a-9c3e-99c1886a6203" />
+CuanBot adalah aplikasi chatbot berbasis Telegram yang membantu UMKM mengelola keuangan dengan mudah menggunakan Natural Language Processing (NLP) dan Machine Learning.
 
 ## 🌟 Fitur Utama
 
